@@ -34,21 +34,15 @@ function createMap(earthquakes) {
       id: "outdoors-v11",
       accessToken: API_KEY
     });
-    var outdoorsmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
-      attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'",
-      maxZoom: 18,
-      id: "outdoors-v11",
-      accessToken: API_KEY
-    });
-  
+    
 
     
   
     // Create a baseMaps object to hold the lightmap layer
     var baseMaps = {
+        "Dark": darkmap,
         "Light": lightmap,
         "Satelite": satellitemap,
-        "Dark": darkmap,
         "Satellite Streets": satellitestreetsmap,
         "Outdoors": outdoorsmap
     };
@@ -65,7 +59,7 @@ function createMap(earthquakes) {
       center: [-14.599413, -28.673147],
       zoom: 9,
     //   layers: [lightmap, earthquakes]
-    layers: [lightmap, earthquakes]
+    layers: [darkmap, earthquakes]
     });
     map.flyTo([30.145127, -27.064836], 3)
 
