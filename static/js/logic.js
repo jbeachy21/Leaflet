@@ -75,7 +75,7 @@ function createMap(earthquakes) {
       };
       // Add the info legend to the map
       legend.addTo(map);
-    document.getElementsByClassName("legend").style.color = "#808080";
+     
 
       createLegend();
 }
