@@ -82,12 +82,12 @@ function createMap(earthquakes) {
 
 function createLegend() { 
     document.querySelector(".legend").innerHTML = [
-      "<p style='background-color:#00FF7F'>Lime green: -10 to 10" + "</p>",
-      "<p style='background-color:#ADFF2F'>Green yellow: 10 to 30" + "</p>",
-      "<p style='background-color:#FFD700'>Gold: 30 to 50" +  "</p>",
-      "<p style='background-color:#FFA500'>Orange: 50 to 70" + "</p>",
-      "<p style='background-color:#FF8C00'>Dark Orange: 70 to 90"  + "</p>",
-      "<p style='background-color:#FF0000'>Red: 90 and up"+ "</p>"
+      "<p style='background-color:#00FF7F'>Lime green: 0 to 1" + "</p>",
+      "<p style='background-color:#ADFF2F'>Green yellow: 1 to 2" + "</p>",
+      "<p style='background-color:#FFD700'>Gold: 3 to 5" +  "</p>",
+      "<p style='background-color:#FFA500'>Orange: 5 to 7" + "</p>",
+      "<p style='background-color:#FF8C00'>Dark Orange: 7 to 9"  + "</p>",
+      "<p style='background-color:#FF0000'>Red: 9 and up"+ "</p>"
     ].join("");
     // var legend = document.getElementsByClassName("legend").style.backgroundColor = "#808080";
     // console.log("legend =" + legend)
@@ -99,6 +99,7 @@ function createLegend() {
     var Quakepoints = [];
 
     var colorScale = ["#00FF7F","#ADFF2F","#ADFF2F","#FFD700","#FFD700","#FFA500","#FFA500","#FF8C00","#FF8C00","#FF0000"];
+    var colornames= ['Spring Green', 'Green Yellow', 'Green Yellow', 'Gold', 'Gold', 'Orange', 'Orange', 'Dark Orange', 'Red'];
 
     for (var index = 0; index < response.features.length; index++) {
          
@@ -111,7 +112,7 @@ function createLegend() {
          
         
         var Quakepoint = L.circleMarker([lat, lon], {radius: magnitude * Math.PI,color:color}).bindPopup("<h3>Location: " + response.features[index].properties.place + "</h3><h3>Magnitude: " + magnitude + 
-        "</h3><h3>Coordinates: " +`${lat}, ${lon}` + "</h3><h3>" + `Time: ${date}` + "</h3>");
+        "</h3><h3>Coordinates: " +`${lat}, ${lon}` + "</h3><h3>" + `Time: ${date}` + "</h3><h3>Color: " + colornames[Math.floor(magnitude)]);
          
 
         Quakepoints.push(Quakepoint);
