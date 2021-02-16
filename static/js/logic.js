@@ -34,10 +34,8 @@ function createMap(earthquakes) {
       id: "outdoors-v11",
       accessToken: API_KEY
     });
-    
 
-    
-  
+   
     // Create a baseMaps object to hold the lightmap layer
     var baseMaps = {
         "Dark": darkmap,
@@ -51,9 +49,7 @@ function createMap(earthquakes) {
     var overlayMaps = {
       "Earthquakes": earthquakes
     };
-     
-    
-    
+ 
     // Create the map object with options
     var map = L.map("map", {
       center: [-14.599413, -28.673147],
@@ -69,8 +65,34 @@ function createMap(earthquakes) {
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(map);
+
+
+    var legend = L.control({position:'bottomright'});
+
+    legend.onAdd = function() {
+        var div = L.DomUtil.create("div", "legend");
+        return div;
+      };
+      // Add the info legend to the map
+      legend.addTo(map);
+    document.getElementsByClassName("legend").style.color = "#808080";
+
+      createLegend();
 }
-   
+
+function createLegend() { 
+    document.querySelector(".legend").innerHTML = [
+      "<p style='background-color:#00FF7F'>Lime green: -10 to 10" + "</p>",
+      "<p style='background-color:#ADFF2F'>Green yellow: 10 to 30" + "</p>",
+      "<p style='background-color:#FFD700'>Gold: 30 to 50" +  "</p>",
+      "<p style='background-color:#FFA500'>Orange: 50 to 70" + "</p>",
+      "<p style='background-color:#FF8C00'>Dark Orange: 70 to 90"  + "</p>",
+      "<p style='background-color:#FF0000'>Red: 90 and up"+ "</p>"
+    ].join("");
+    // var legend = document.getElementsByClassName("legend").style.backgroundColor = "#808080";
+    // console.log("legend =" + legend)
+    // legend.style.backgroundColor = "#808080";
+  }
 
   function createMarkers(response) {
   
@@ -86,19 +108,11 @@ function createMap(earthquakes) {
         if (magnitude < 0) magnitude = 0;
         var color = colorScale[Math.floor(magnitude)];
         var date = new Date(1000 * response.features[index].properties.time);
-        // var icon = new L.Icon({
-        //     iconUrl: '',
-        //     html: color
-        //   });
-          
-        // console.log(`icon = ${icon}`);
-
-        // console.log(`magnitude = ${Math.floor(magnitude)}`);
-        // console.log(`color = ${color}`);
+         
         
         var Quakepoint = L.circleMarker([lat, lon], {radius: magnitude * Math.PI,color:color}).bindPopup("<h3>Location: " + response.features[index].properties.place + "</h3><h3>Magnitude: " + magnitude + 
-        "</h3><h3>Coordinates: " +`${lat},${lon}` + "</h3><h3>" + `${date}` + "</h3>");
-        // document.getElementsByClassName('leaflet-marker-icon').style.backgroundColor = color;
+        "</h3><h3>Coordinates: " +`${lat}, ${lon}` + "</h3><h3>" + `Time: ${date}` + "</h3>");
+         
 
         Quakepoints.push(Quakepoint);
          
