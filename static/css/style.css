@@ -9,5 +9,13 @@ html {
   height: 100%;
 }
 .legend {
-  background-color: '#808080';
+  padding: 5px;
+  font-family: Sanchez, serif;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  color: #555;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
