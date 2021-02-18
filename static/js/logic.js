@@ -46,6 +46,10 @@ function createMap(earthquakes) {
     };
   
     // Create an overlayMaps object to hold the bikeStations layer
+    
+
+      
+
     var overlayMaps = {
       "Earthquakes": earthquakes
     };
@@ -62,22 +66,23 @@ function createMap(earthquakes) {
    
   
     // Create a layer control, pass in the baseMaps and overlayMaps. Add the layer control to the map
-    L.control.layers(baseMaps, overlayMaps, {
-      collapsed: false
+    L.control.layers(baseMaps, overlayMaps,{
+      collapsed: true
     }).addTo(map);
-
-
+    
     var legend = L.control({position:'bottomright'});
-
+    
     legend.onAdd = function() {
         var div = L.DomUtil.create("div", "legend");
         return div;
       };
+      
+      
       // Add the info legend to the map
       legend.addTo(map);
-     
-
       createLegend();
+      
+    
 }
 
 function createLegend() { 
@@ -89,9 +94,7 @@ function createLegend() {
       "<p style='background-color:#FF8C00'>Dark Orange: 7 to 9"  + "</p>",
       "<p style='background-color:#FF0000'>Red: 9 and up"+ "</p>"
     ].join("");
-    // var legend = document.getElementsByClassName("legend").style.backgroundColor = "#808080";
-    // console.log("legend =" + legend)
-    // legend.style.backgroundColor = "#808080";
+     
   }
 
   function createMarkers(response) {
@@ -122,9 +125,19 @@ function createLegend() {
     // Create a layer group made from the bike markers array, pass it into the createMap function
     createMap(L.layerGroup(Quakepoints));
   }
+
+  function createPlates(response) {
+
+    var coordinates = [];
+
+    for (var index = 0; index<response.features.length; index++) {
+      coordinates.push(response.features[index].geometry.coordinates);
+    }
+  } 
   
   // Perform an API call to the Citi Bike API to get station information. Call createMarkers when complete
   d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson", createMarkers);
+  d3.json();
 
 
 

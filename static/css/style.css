@@ -8,6 +8,10 @@ body,
 html {
   height: 100%;
 }
+.legend:hover {
+  animation: fade 1s;
+  opacity: 1;
+}
 .legend {
   padding: 5px;
   font-family: Sanchez, serif;
@@ -18,4 +22,25 @@ html {
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  animation: fade2 1s;
+  opacity:0.2;
+  
+  
+   
+}
+
+@keyframes fade {
+  0% {opacity:0.2}
+  25% {opacity:0.4}
+  50% {opacity:0.6}
+  75% {opacity:0.8}
+  100% {opacity:1.0}
+}
+
+@keyframes fade2 {
+  0% {opacity:1.0}
+  25% {opacity:0.8}
+  50% {opacity:0.6}
+  75% {opacity:0.4}
+  100% {opacity:0.2}
 }
