@@ -9,20 +9,20 @@ html {
   height: 100%;
 }
 .legend:hover {
-  animation: fade 1s;
+  animation: fade 0.5s;
   opacity: 1;
 }
 .legend {
   padding: 5px;
   font-family: Sanchez, serif;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
-  line-height: 14px;
+  line-height: 18px;
   color: #555;
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  animation: fade2 1s;
+  animation: fade2 0.5s;
   opacity:0.2;
   
   
