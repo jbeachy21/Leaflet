@@ -45,11 +45,12 @@ function createMap(earthquakes) {
         "Outdoors": outdoorsmap
     };
   
+
+    var faultline = new L.LayerGroup();
+     
+
+
     // Create an overlayMaps object to hold the bikeStations layer
-    
-
-      
-
     var overlayMaps = {
       "Earthquakes": earthquakes
     };
